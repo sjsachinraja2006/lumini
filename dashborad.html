@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminest – Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-orb"></div>
+      <span>Luminest</span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-step" id="stepLabel">Step 1 of 4</span>
+      <a href="index.html" class="btn-back">← Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- MAIN DASHBOARD -->
+  <main class="dashboard">
+
+    <!-- STEP 1: AREA SELECTOR -->
+    <div class="dash-step active" id="step1">
+      <div class="step-head">
+        <div class="step-num">01</div>
+        <div>
+          <h2>Select an Area</h2>
+          <p>Which part of your home do you want to design?</p>
+        </div>
+      </div>
+      <div class="area-grid">
+        <div class="area-btn" data-area="Exterior" onclick="selectArea(this)">
+          <span class="ab-icon">🏡</span>
+          <span class="ab-name">Exterior</span>
+          <span class="ab-desc">Outside walls & gate</span>
+        </div>
+        <div class="area-btn" data-area="Living Hall" onclick="selectArea(this)">
+          <span class="ab-icon">🛋️</span>
+          <span class="ab-name">Living Hall</span>
+          <span class="ab-desc">Sofa, walls & lighting</span>
+        </div>
+        <div class="area-btn" data-area="Kitchen" onclick="selectArea(this)">
+          <span class="ab-icon">🍳</span>
+          <span class="ab-name">Kitchen</span>
+          <span class="ab-desc">Cabinets & tiles</span>
+        </div>
+        <div class="area-btn" data-area="Bedroom" onclick="selectArea(this)">
+          <span class="ab-icon">🛏️</span>
+          <span class="ab-name">Bedroom</span>
+          <span class="ab-desc">Soft tones & furniture</span>
+        </div>
+        <div class="area-btn" data-area="Bathroom" onclick="selectArea(this)">
+          <span class="ab-icon">🚿</span>
+          <span class="ab-name">Bathroom</span>
+          <span class="ab-desc">Tiles & fixtures</span>
+          <span class="ab-new">New</span>
+        </div>
+        <div class="area-btn" data-area="Terrace" onclick="selectArea(this)">
+          <span class="ab-icon">🌿</span>
+          <span class="ab-name">Terrace</span>
+          <span class="ab-desc">Plants & pots</span>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-next" onclick="goStep(2)" id="nextBtn1" disabled>
+          Continue → Upload Photo
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: PHOTO UPLOAD + BUDGET -->
+    <div class="dash-step" id="step2">
+      <div class="step-head">
+        <div class="step-num">02</div>
+        <div>
+          <h2>Upload Photo & Set Budget</h2>
+          <p>Upload a photo of your <span id="areaLabel" class="highlight">room</span> and enter your budget.</p>
+        </div>
+      </div>
+      <div class="step2-grid">
+
+        <!-- UPLOAD -->
+        <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(event)"/>
+          <div class="ub-inner" id="uploadInner">
+            <div class="ub-icon">📷</div>
+            <p class="ub-title">Click or drag to upload</p>
+            <p class="ub-sub">JPG, PNG supported · Max 10MB</p>
+          </div>
+          <img id="previewImg" class="preview-img" style="display:none"/>
+        </div>
+
+        <!-- BUDGET + STYLE -->
+        <div class="budget-box">
+          <div class="form-group">
+            <label>Total Budget (₹)</label>
+            <input type="number" id="budgetInput" placeholder="e.g. 50000" class="form-input" oninput="updateBudgetSplit()"/>
+          </div>
+          <div class="budget-split" id="budgetSplit" style="display:none">
+            <p class="bs-label">Auto budget split</p>
+            <div class="bs-bars" id="bsBars"></div>
+          </div>
+          <div class="form-group">
+            <label>Style Preference</label>
+            <div class="style-btns">
+              <button class="style-btn active" onclick="selectStyle(this,'Modern')">Modern</button>
+              <button class="style-btn" onclick="selectStyle(this,'Minimal')">Minimal</button>
+              <button class="style-btn" onclick="selectStyle(this,'Traditional')">Traditional</button>
+              <button class="style-btn" onclick="selectStyle(this,'Luxury')">Luxury</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Your City</label>
+            <input type="text" id="cityInput" placeholder="e.g. Salem, Chennai" class="form-input"/>
+          </div>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back-step" onclick="goStep(1)">← Back</button>
+        <button class="btn-next" onclick="goStep(3)" id="nextBtn2">
+          Continue → Get AI Suggestions
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: AI SUGGESTIONS -->
+    <div class="dash-step" id="step3">
+      <div class="step-head">
+        <div class="step-num">03</div>
+        <div>
+          <h2>AI Design Suggestions</h2>
+          <p>Claude AI will analyze your room and suggest the perfect design.</p>
+        </div>
+      </div>
+
+      <div class="ai-panel">
+        <!-- LEFT: photo preview -->
+        <div class="ai-photo-side">
+          <div class="photo-frame">
+            <img id="aiPhotoPreview" class="ai-photo" src="" alt="Room photo"/>
+            <div class="photo-overlay" id="photoOverlay"></div>
+            <div class="photo-label">Your <span id="photoAreaLabel"></span></div>
+          </div>
+          <div class="ai-meta">
+            <div class="am-item"><span class="am-icon">🏠</span><span id="metaArea">—</span></div>
+            <div class="am-item"><span class="am-icon">💰</span><span id="metaBudget">—</span></div>
+            <div class="am-item"><span class="am-icon">🎨</span><span id="metaStyle">—</span></div>
+            <div class="am-item"><span class="am-icon">📍</span><span id="metaCity">—</span></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: AI response -->
+        <div class="ai-result-side">
+          <div class="ai-idle" id="aiIdle">
+            <div class="ai-orb"></div>
+            <h3>Ready to design!</h3>
+            <p>Click the button below to get AI-powered suggestions for your <span id="idleAreaLabel"></span>.</p>
+            <button class="btn-ai" onclick="getAISuggestions()" id="aiBtn">
+              <span class="ai-btn-icon">✦</span>
+              Get AI Suggestions
+            </button>
+          </div>
+          <div class="ai-loading" id="aiLoading" style="display:none">
+            <div class="loading-orbs">
+              <div class="lo lo1"></div>
+              <div class="lo lo2"></div>
+              <div class="lo lo3"></div>
+            </div>
+            <p>Claude AI is designing your <span id="loadingArea"></span>...</p>
+          </div>
+          <div class="ai-output" id="aiOutput" style="display:none">
+            <div class="ao-header">
+              <span class="ao-badge">✦ AI Generated</span>
+              <button class="btn-regenerate" onclick="getAISuggestions()">↺ Regenerate</button>
+            </div>
+            <div class="ao-content" id="aoContent"></div>
+            <button class="btn-next" onclick="goStep(4)" style="margin-top:24px;width:100%">
+              Continue → Find Local Shops →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-footer">
+        <button class="btn-back-step" onclick="goStep(2)">← Back</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: SHOP FINDER -->
+    <div class="dash-step" id="step4">
+      <div class="step-head">
+        <div class="step-num">04</div>
+        <div>
+          <h2>Find Local Shops</h2>
+          <p>Nearby stores in <span id="shopCity" class="highlight">your city</span> within your budget.</p>
+        </div>
+      </div>
+
+      <div class="shop-grid" id="shopGrid">
+        <div class="shop-card">
+          <div class="sc-icon">🎨</div>
+          <h4>Paint Shops</h4>
+          <p>Asian Paints, Berger, Nerolac dealers near you.</p>
+          <div class="sc-tags"><span>Low budget</span><span>Medium</span><span>Premium</span></div>
+          <button class="sc-btn" onclick="searchShops('paint shops')">Search Nearby →</button>
+        </div>
+        <div class="shop-card">
+          <div class="sc-icon">🛋️</div>
+          <h4>Furniture Stores</h4>
+          <p>Local and branded furniture stores near you.</p>
+          <div class="sc-tags"><span>Wooden</span><span>Modern</span><span>Budget</span></div>
+          <button class="sc-btn" onclick="searchShops('furniture stores')">Search Nearby →</button>
+        </div>
+        <div class="shop-card">
+          <div class="sc-icon">💡</div>
+          <h4>Lighting Shops</h4>
+          <p>LED, ambient and decorative lighting dealers.</p>
+          <div class="sc-tags"><span>LED</span><span>Decorative</span><span>Smart</span></div>
+          <button class="sc-btn" onclick="searchShops('lighting shops')">Search Nearby →</button>
+        </div>
+        <div class="shop-card">
+          <div class="sc-icon">🚿</div>
+          <h4>Tile & Bathroom</h4>
+          <p>Ceramic tiles, fixtures and sanitary stores.</p>
+          <div class="sc-tags"><span>Ceramic</span><span>Vitrified</span><span>Fixtures</span></div>
+          <button class="sc-btn" onclick="searchShops('tile bathroom shops')">Search Nearby →</button>
+        </div>
+        <div class="shop-card">
+          <div class="sc-icon">🌿</div>
+          <h4>Plant Nurseries</h4>
+          <p>Indoor, outdoor and terrace plants near you.</p>
+          <div class="sc-tags"><span>Indoor</span><span>Terrace</span><span>Low care</span></div>
+          <button class="sc-btn" onclick="searchShops('plant nursery')">Search Nearby →</button>
+        </div>
+        <div class="shop-card sc-summary">
+          <div class="sc-icon">📊</div>
+          <h4>Budget Summary</h4>
+          <div id="summaryContent"></div>
+          <button class="sc-btn" onclick="window.print()">Save / Print Plan</button>
+        </div>
+      </div>
+
+      <div class="step-footer" style="justify-content:center">
+        <button class="btn-back-step" onclick="goStep(3)">← Back to AI Suggestions</button>
+        <a href="index.html" class="btn-next">Start New Design →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar">
+    <div class="pb-step active" onclick="goStep(1)"><span>1</span><p>Area</p></div>
+    <div class="pb-line"></div>
+    <div class="pb-step" onclick="goStep(2)"><span>2</span><p>Photo & Budget</p></div>
+    <div class="pb-line"></div>
+    <div class="pb-step" onclick="goStep(3)"><span>3</span><p>AI Design</p></div>
+    <div class="pb-line"></div>
+    <div class="pb-step" onclick="goStep(4)"><span>4</span><p>Shops</p></div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
