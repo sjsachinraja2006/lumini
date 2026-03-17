@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminest – Style Every Area of Your Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <div class="logo-orb"></div>
+      <span>Luminest</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="dashboard.html" class="nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left fade-up" style="--d:0.1s">
+      <div class="hero-badge"><span class="bdot"></span> AI-Powered Home Design</div>
+      <h1>Design Your Home<br/><em>Beyond Gravity</em></h1>
+      <p>Upload any room photo. Set your budget. Watch AI suggest perfect colors, furniture and plants — all in one place.</p>
+      <div class="hero-btns">
+        <a href="dashboard.html" class="btn-primary">Start Planning Free →</a>
+        <a href="#areas" class="btn-outline">Explore Areas</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>6+</strong><p>Areas</p></div>
+        <div class="stat-line"></div>
+        <div class="stat"><strong>100%</strong><p>AI Powered</p></div>
+        <div class="stat-line"></div>
+        <div class="stat"><strong>Free</strong><p>To Start</p></div>
+      </div>
+    </div>
+    <div class="hero-right fade-up" style="--d:0.3s">
+      <div class="room-card">
+        <div class="rc-top">
+          <div class="rc-dots"><span></span><span></span><span></span></div>
+          <span class="rc-title">Living Hall · AI Preview</span>
+        </div>
+        <div class="room-scene">
+          <div class="rs-wall" id="rsWall"></div>
+          <div class="rs-floor"></div>
+          <div class="rs-sofa">
+            <div class="sofa-back"></div>
+            <div class="sofa-seat"></div>
+            <div class="sofa-c c1"></div>
+            <div class="sofa-c c2"></div>
+            <div class="sofa-c c3"></div>
+          </div>
+          <div class="rs-lamp">
+            <div class="lamp-top"></div>
+            <div class="lamp-pole"></div>
+            <div class="lamp-glow"></div>
+          </div>
+          <div class="rs-plant">
+            <div class="plant-pot"></div>
+            <div class="plant-l l1"></div>
+            <div class="plant-l l2"></div>
+          </div>
+          <div class="rs-window">
+            <div class="win-light"></div>
+          </div>
+        </div>
+        <div class="rc-palette">
+          <span>AI palette</span>
+          <div class="palette-dots">
+            <div class="pd active" style="--pc:#c8903a" onclick="changeWall(this,'#c8903a')"></div>
+            <div class="pd" style="--pc:#7a9e8a" onclick="changeWall(this,'#7a9e8a')"></div>
+            <div class="pd" style="--pc:#8090b0" onclick="changeWall(this,'#8090b0')"></div>
+            <div class="pd" style="--pc:#c4785a" onclick="changeWall(this,'#c4785a')"></div>
+            <div class="pd" style="--pc:#a09060" onclick="changeWall(this,'#a09060')"></div>
+          </div>
+          <span class="pai">✦ AI picked</span>
+        </div>
+      </div>
+      <div class="float-chip fc1"><span>🎨</span><div><b>Color matched</b><p>Warm Oak</p></div></div>
+      <div class="float-chip fc2"><span>💰</span><div><b>₹47,200/₹50,000</b><p>Within budget</p></div></div>
+      <div class="float-chip fc3"><span>📍</span><div><b>4 shops nearby</b><p>Salem</p></div></div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>Exterior</span><em>◆</em><span>Living Hall</span><em>◆</em>
+      <span>Kitchen</span><em>◆</em><span>Bedroom</span><em>◆</em>
+      <span>Bathroom</span><em>◆</em><span>Terrace</span><em>◆</em>
+      <span>Budget AI</span><em>◆</em><span>Color Vision</span><em>◆</em>
+      <span>Shop Finder</span><em>◆</em>
+      <span>Exterior</span><em>◆</em><span>Living Hall</span><em>◆</em>
+      <span>Kitchen</span><em>◆</em><span>Bedroom</span><em>◆</em>
+      <span>Bathroom</span><em>◆</em><span>Terrace</span><em>◆</em>
+      <span>Budget AI</span><em>◆</em><span>Color Vision</span><em>◆</em>
+      <span>Shop Finder</span><em>◆</em>
+    </div>
+  </div>
+
+  <!-- AREAS -->
+  <section class="areas-sec" id="areas">
+    <div class="sec-head">
+      <p class="stag">Full Coverage</p>
+      <h2>Plan Every Area of<br/><em>Your House</em></h2>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card" style="--ac:#00eeff">
+        <div class="ac-num">01</div>
+        <div class="ac-icon">🏡</div>
+        <h3>Exterior</h3>
+        <p>Outside walls, gate, entrance colors and finish suggestions.</p>
+        <div class="ac-tags"><span>Wall AI</span><span>Paint brands</span><span>Before/After</span></div>
+      </div>
+      <div class="area-card" style="--ac:#ffb830">
+        <div class="ac-num">02</div>
+        <div class="ac-icon">🛋️</div>
+        <h3>Living Hall</h3>
+        <p>Accent walls, furniture, lighting combinations for your space.</p>
+        <div class="ac-tags"><span>Accent wall</span><span>Furniture</span><span>Lighting</span></div>
+      </div>
+      <div class="area-card" style="--ac:#5cb8e0">
+        <div class="ac-num">03</div>
+        <div class="ac-icon">🍳</div>
+        <h3>Kitchen</h3>
+        <p>Cabinet colors, tile patterns and functional task lighting.</p>
+        <div class="ac-tags"><span>Cabinets</span><span>Tiles</span><span>Task light</span></div>
+      </div>
+      <div class="area-card" style="--ac:#9b7fe8">
+        <div class="ac-num">04</div>
+        <div class="ac-icon">🛏️</div>
+        <h3>Bedroom</h3>
+        <p>Soft tones, wardrobe colors and ambient mood lighting.</p>
+        <div class="ac-tags"><span>Soft tones</span><span>Wardrobe</span><span>Mood light</span></div>
+      </div>
+      <div class="area-card area-wide" style="--ac:#4ecdc4">
+        <div class="ac-num">05</div>
+        <div class="ac-icon">🚿</div>
+        <h3>Bathroom <span class="new-badge">New</span></h3>
+        <p>Tile patterns, fixture finishes, vanity colors, shower lighting and waterproof palettes — complete AI bathroom design.</p>
+        <div class="ac-tags"><span>Tile AI</span><span>Fixtures</span><span>Vanity</span><span>Shower light</span><span>Waterproof</span></div>
+        <div class="bath-preview">
+          <div class="bp-wall"></div>
+          <div class="bp-floor"></div>
+          <div class="bp-tiles">
+            <div class="bt" style="--tc:#e2dbd2"></div><div class="bt" style="--tc:#cec7bd"></div><div class="bt" style="--tc:#e2dbd2"></div>
+            <div class="bt" style="--tc:#cec7bd"></div><div class="bt" style="--tc:#e2dbd2"></div><div class="bt" style="--tc:#cec7bd"></div>
+          </div>
+          <div class="bp-mirror"></div>
+          <div class="bp-sink"><div class="sink-b"></div><div class="sink-t"></div></div>
+          <div class="bp-shower">
+            <div class="sh-h"></div><div class="sh-p"></div>
+            <div class="sh-drops"><div class="sd d1"></div><div class="sd d2"></div><div class="sd d3"></div></div>
+          </div>
+          <div class="bp-towel"></div>
+        </div>
+      </div>
+      <div class="area-card" style="--ac:#5ce085">
+        <div class="ac-num">06</div>
+        <div class="ac-icon">🌿</div>
+        <h3>Terrace</h3>
+        <p>Plants by sunlight, pot placement and balcony décor on budget.</p>
+        <div class="ac-tags"><span>Plants</span><span>Sunlight</span><span>Pots</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="feat-sec" id="features">
+    <div class="sec-head">
+      <p class="stag">Capabilities</p>
+      <h2>What Luminest<br/><em>Brings to Life</em></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card feat-big">
+        <span class="fi">🎨</span>
+        <h3>AI Color Vision</h3>
+        <p>Claude AI reads your photo and budget — suggests wall colors applied virtually in real time before you buy.</p>
+        <div class="feat-badge">Core Feature</div>
+        <div class="color-balls">
+          <div class="cb" style="--cc:#c8903a;--cs:44px"></div>
+          <div class="cb" style="--cc:#7a9e8a;--cs:36px"></div>
+          <div class="cb" style="--cc:#8090b0;--cs:30px"></div>
+          <div class="cb" style="--cc:#c4785a;--cs:24px"></div>
+          <div class="cb" style="--cc:#a09060;--cs:20px"></div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="fi">🛋️</span>
+        <h3>Furniture Match</h3>
+        <p>AI picks furniture that matches your wall color and fits your budget perfectly.</p>
+      </div>
+      <div class="feat-card">
+        <span class="fi">💡</span>
+        <h3>Smart Lighting</h3>
+        <p>Ambient, task and accent lighting curated by AI for every room.</p>
+      </div>
+      <div class="feat-card">
+        <span class="fi">🚿</span>
+        <h3>Bathroom Design</h3>
+        <p>Tiles, vanity, shower setups and waterproof palettes — all AI recommended.</p>
+      </div>
+      <div class="feat-card feat-big">
+        <span class="fi">💰</span>
+        <h3>Smart Budget Split</h3>
+        <p>Enter total budget — AI auto-splits across all 6 areas so nothing gets overspent.</p>
+        <div class="budget-bars">
+          <div class="bb"><span>Exterior</span><div class="bb-track"><div class="bb-fill" style="--bw:28%;--bc:#00eeff"></div></div><span>28%</span></div>
+          <div class="bb"><span>Hall</span><div class="bb-track"><div class="bb-fill" style="--bw:22%;--bc:#ffb830"></div></div><span>22%</span></div>
+          <div class="bb"><span>Kitchen</span><div class="bb-track"><div class="bb-fill" style="--bw:18%;--bc:#5cb8e0"></div></div><span>18%</span></div>
+          <div class="bb"><span>Bedroom</span><div class="bb-track"><div class="bb-fill" style="--bw:14%;--bc:#9b7fe8"></div></div><span>14%</span></div>
+          <div class="bb"><span>Bathroom</span><div class="bb-track"><div class="bb-fill" style="--bw:12%;--bc:#4ecdc4"></div></div><span>12%</span></div>
+          <div class="bb"><span>Terrace</span><div class="bb-track"><div class="bb-fill" style="--bw:6%;--bc:#5ce085"></div></div><span>6%</span></div>
+        </div>
+      </div>
+      <div class="feat-card">
+        <span class="fi">📍</span>
+        <h3>Shop Finder</h3>
+        <p>Nearby paint, tile and furniture shops sorted by your budget range.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="how-sec" id="how">
+    <div class="sec-head">
+      <p class="stag">Process</p>
+      <h2>How Luminest Works</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="hs-num">01</div>
+        <h3>Upload Photo</h3>
+        <p>Take a photo of any area — hall, kitchen, bedroom, bathroom or terrace.</p>
+      </div>
+      <div class="how-line"></div>
+      <div class="how-step">
+        <div class="hs-num">02</div>
+        <h3>Set Budget</h3>
+        <p>Enter your total budget. Luminest splits it area-wise automatically.</p>
+      </div>
+      <div class="how-line"></div>
+      <div class="how-step">
+        <div class="hs-num">03</div>
+        <h3>AI Designs</h3>
+        <p>Claude AI suggests colors, tiles, furniture, lighting and plants.</p>
+      </div>
+      <div class="how-line"></div>
+      <div class="how-step">
+        <div class="hs-num">04</div>
+        <h3>Preview & Shop</h3>
+        <p>See before & after and find nearby shops within your budget.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="cta-glow g1"></div>
+    <div class="cta-glow g2"></div>
+    <h2>Ready to Transform<br/><em>Your Dream Home?</em></h2>
+    <p>Start for free. No account needed. Just upload and plan.</p>
+    <a href="dashboard.html" class="btn-primary btn-lg">Launch Luminest →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="foot-brand">
+        <div class="logo"><div class="logo-orb"></div><span>Luminest</span></div>
+        <p>AI-powered home design for every corner of your house.</p>
+      </div>
+      <div class="foot-col"><h4>Areas</h4><a href="#">Exterior</a><a href="#">Hall</a><a href="#">Kitchen</a><a href="#">Bedroom</a><a href="#">Bathroom</a><a href="#">Terrace</a></div>
+      <div class="foot-col"><h4>Features</h4><a href="#">Color AI</a><a href="#">Budget Split</a><a href="#">Shop Finder</a><a href="#">Before & After</a></div>
+    </div>
+    <div class="foot-bar">© 2025 Luminest · Powered by Claude AI</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
